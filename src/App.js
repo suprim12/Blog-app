@@ -6,9 +6,10 @@ import { setCurrentUser, logoutUser } from "./actions/authActions";
 import store from "./store";
 // Components
 import Nav from "./components/Nav";
-import Posts from "./components/Posts";
+import Posts from "./components/posts/Posts";
 import Register from "./components/auth/Register";
 import Login from "./components/auth/Login";
+import CreatePost from "./components/posts/CreatePost";
 
 // LOGIN LOGIC
 if (localStorage.jwtToken) {
@@ -26,9 +27,9 @@ if (localStorage.jwtToken) {
   // Check for Expired Token
   const currentTime = Date.now() / 1000;
   if (decode.exp < currentTime) {
-    store.dispatch(logoutUser);
+    store.dispatch(logoutUser());
     // REDIRECT
-    window.location.href("/login");
+    window.location.href = "/login";
   }
 }
 
@@ -41,6 +42,7 @@ function App() {
           <Route exact path="/" component={Posts} />
           <Route path="/register" component={Register} />
           <Route path="/login" component={Login} />
+          <Route path="/addpost" component={CreatePost} />
         </Switch>
       </Router>
     </React.Fragment>

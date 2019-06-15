@@ -12,6 +12,11 @@ class Nav extends Component {
     const authlinks = (
       <React.Fragment>
         <li className="nav-item">
+          <Link className="nav-link" to="/addpost">
+            Add posts
+          </Link>
+        </li>
+        <li className="nav-item">
           <span className="nav-link" onClick={this.logout}>
             Logout
           </span>
